@@ -6,10 +6,11 @@ public class Flip : MonoBehaviour
 {
     float flip;
     public Transform map;
-    Vector3 target;
-    float speed = 5;
-    Vector3 test;
-    float singlestep;
+    //public Transform target;
+    //float speed = 5;
+    //Vector3 test;
+    //float singlestep;
+    bool cool = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,20 +28,51 @@ public class Flip : MonoBehaviour
         {
             flip = 0;
         }
-        Debug.Log(flip);
 
-        if (flip == 1)
+        if (!cool)
         {
-            target.z = map.rotation.z + 90;
-            singlestep = speed * Time.deltaTime;
-            Debug.Log(target);
-            test = Vector3.RotateTowards(transform.forward, target, singlestep, 1f);
+            
+            if (flip == 1)
+            {
+                /*Vector3 targetl = target.position - map.position;
+                singlestep = speed * Time.deltaTime;
+                //Debug.Log(map.rotation);
+                //Debug.Log(target);
+                test = Vector3.RotateTowards(transform.forward, targetl, singlestep, 0.0f);
 
-            map.rotation = Quaternion.LookRotation(test);
+                map.rotation = Quaternion.LookRotation(test);*/
+                StartCoroutine(wait(flip));
+            }
+            else if(flip == -1)
+            {
+                StartCoroutine(wait(flip));
+            }
+
         }
-        else if(flip == -1)
+    }
+    IEnumerator wait(float rotation)
+    {
+        cool = true;
+        Vector3 temp = new Vector3 (0, 0, map.eulerAngles.z + (90 * rotation));
+        if (temp.z < 0)
         {
-            map.Rotate(0, 0, -90);
+            temp.z = 270;
+            Debug.Log("270");
         }
+        else if (temp.z > 359)
+        {
+            Debug.Log("359");
+            temp.z = 0;
+        }
+        while (map.eulerAngles.z - temp.z != 0)
+        {
+            //Debug.Log(temp);
+            //Debug.Log(map.eulerAngles - temp);
+            yield return new WaitForSeconds(0.001f);
+            map.Rotate(0, 0, rotation);
+            Debug.Log(map.eulerAngles);
+        }
+        cool = false;
+        yield return null;
     }
 }
