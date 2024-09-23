@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static Action<Quaternion> OnRotation;
+
     [SerializeField] private float rotationSpeed = 5f;
 
     private Camera _camera;
@@ -28,11 +31,13 @@ public class CameraController : MonoBehaviour
             }
             else
             {
-                _camera.transform.rotation =
-                    Quaternion.Slerp(
-                        _camera.transform.rotation,
-                        _targetRotation,
-                        Time.deltaTime * rotationSpeed);
+                var rotation = Quaternion.Slerp(
+                    _camera.transform.rotation,
+                    _targetRotation,
+                    Time.deltaTime * rotationSpeed);
+
+                _camera.transform.rotation = rotation;
+                OnRotation?.Invoke(rotation);
             }
         }
     }
