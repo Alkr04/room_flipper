@@ -68,9 +68,9 @@ public class Flip : MonoBehaviour
         {
             //Debug.Log(temp);
             //Debug.Log(map.eulerAngles - temp);
+            Debug.Log(map.eulerAngles);
             yield return new WaitForSeconds(0.001f);
             map.Rotate(0, 0, rotation);
-            Debug.Log(map.eulerAngles);
         }
         cool = false;
         yield return null;
