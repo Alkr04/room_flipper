@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
             _rigidBody.isKinematic = true;
             transform.rotation = rotation;
         };
+
         _rigidBody = GetComponent<Rigidbody2D> ();
         _constantForce2D = GetComponent<ConstantForce2D> ();
 
