@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     {
         CameraController.OnRotation += rotation =>
         {
-            _rigidBody.isKinematic = true;
+            _rigidBody.bodyType = RigidbodyType2D.Static;
             transform.rotation = rotation;
         };
 
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         CameraController.OnDownDirectionChanged += direction =>
         {
             var gravityForceAmount = _rigidBody.mass * Physics2D.gravity.magnitude;
-            _rigidBody.isKinematic = false;
+            _rigidBody.bodyType = RigidbodyType2D.Dynamic;
             _constantForce2D.force = direction switch
             {
                 CameraController.Direction.Up => new Vector2(0, gravityForceAmount),
