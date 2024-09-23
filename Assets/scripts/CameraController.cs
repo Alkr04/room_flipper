@@ -4,6 +4,15 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public static Action<Quaternion> OnRotation;
+    public static Action<Direction> OnDownDirectionChanged;
+
+    public enum Direction
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    };
 
     [SerializeField] private float rotationSpeed = 5f;
 
@@ -28,6 +37,23 @@ public class CameraController : MonoBehaviour
             {
                 _isRotating = false;
                 _camera.transform.rotation = _targetRotation;
+                var angle = Mathf.RoundToInt(_targetRotation.eulerAngles.z % 360);
+
+                switch (angle)
+                {
+                    case 0:
+                        OnDownDirectionChanged?.Invoke(Direction.Down);
+                        break;
+                    case 90:
+                        OnDownDirectionChanged?.Invoke(Direction.Left);
+                        break;
+                    case 180:
+                        OnDownDirectionChanged?.Invoke(Direction.Up);
+                        break;
+                    case 270:
+                        OnDownDirectionChanged?.Invoke(Direction.Right);
+                        break;
+                }
             }
             else
             {
