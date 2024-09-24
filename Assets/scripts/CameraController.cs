@@ -20,9 +20,12 @@ public class CameraController : MonoBehaviour
     private Quaternion _targetRotation;
     private bool _isRotating;
 
+    private PlayerController _playerController;
+
     private void Start()
     {
         _camera = Camera.main;
+        _playerController = PlayerController.Instance;
     }
 
     private void Update()
@@ -70,16 +73,19 @@ public class CameraController : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (_playerController.IsNotMoving())
         {
-            _isRotating = true;
-            _targetRotation = Quaternion.Euler(_camera.transform.eulerAngles + Vector3.forward * 90);
-        }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                _isRotating = true;
+                _targetRotation = Quaternion.Euler(_camera.transform.eulerAngles + Vector3.forward * 90);
+            }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            _isRotating = true;
-            _targetRotation = Quaternion.Euler(_camera.transform.eulerAngles - Vector3.forward * 90);
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                _isRotating = true;
+                _targetRotation = Quaternion.Euler(_camera.transform.eulerAngles - Vector3.forward * 90);
+            }
         }
     }
 }

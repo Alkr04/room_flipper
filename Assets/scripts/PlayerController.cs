@@ -3,12 +3,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
     private Rigidbody2D _rigidBody;
     private ConstantForce2D _constantForce2D;
     private float _gravityMagnitude;
 
     private void Awake()
     {
+        Instance = this;
+
         _rigidBody = GetComponent<Rigidbody2D> ();
         _constantForce2D = GetComponent<ConstantForce2D> ();
         _gravityMagnitude = Physics2D.gravity.magnitude;
@@ -36,5 +40,10 @@ public class PlayerController : MonoBehaviour
                 _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
             };
         };
+    }
+
+    public bool IsNotMoving()
+    {
+        return Mathf.Abs(_rigidBody.velocity.magnitude) < .1;
     }
 }
