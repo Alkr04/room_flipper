@@ -1,11 +1,18 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rigidBody;
     private ConstantForce2D _constantForce2D;
+    private float _gravityMagnitude;
+
+    private void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody2D> ();
+        _constantForce2D = GetComponent<ConstantForce2D> ();
+        _gravityMagnitude = Physics2D.gravity.magnitude;
+    }
 
     private void Start()
     {
@@ -15,12 +22,10 @@ public class PlayerController : MonoBehaviour
             transform.rotation = rotation;
         };
 
-        _rigidBody = GetComponent<Rigidbody2D> ();
-        _constantForce2D = GetComponent<ConstantForce2D> ();
-
         CameraController.OnDownDirectionChanged += direction =>
         {
-            var gravityForceAmount = _rigidBody.mass * Physics2D.gravity.magnitude;
+
+            var gravityForceAmount = _rigidBody.mass * _gravityMagnitude;
             _rigidBody.bodyType = RigidbodyType2D.Dynamic;
             _constantForce2D.force = direction switch
             {
