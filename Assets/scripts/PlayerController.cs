@@ -30,31 +30,37 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        CameraController.OnRotation += rotation =>
+        CameraController.OnRotation += OnRotation;
+        CameraController.OnDownDirectionChanged += OnDownDirectionChanged;
+    }
+
+    private void OnRotation(Quaternion rotation)
+    {
+        _rigidBody.bodyType = RigidbodyType2D.Static;
+        transform.rotation = rotation;
+    }
+
+    private void OnDownDirectionChanged(CameraController.Direction direction)
+    {
+        var gravityForceAmount = _rigidBody.mass * _gravityMagnitude;
+        _rigidBody.bodyType = RigidbodyType2D.Dynamic;
+
+        _rigidBody.constraints = direction is CameraController.Direction.Up or CameraController.Direction.Down ? RigidbodyConstraints2D.FreezePositionX : RigidbodyConstraints2D.FreezePositionY;
+
+        _constantForce2D.force = direction switch
         {
-            _rigidBody.bodyType = RigidbodyType2D.Static;
-            transform.rotation = rotation;
+            CameraController.Direction.Up => new Vector2(0, gravityForceAmount),
+            CameraController.Direction.Down => new Vector2(0, -gravityForceAmount),
+            CameraController.Direction.Left => new Vector2(gravityForceAmount, 0),
+            CameraController.Direction.Right => new Vector2(-gravityForceAmount, 0),
+            _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
         };
+    }
 
-        CameraController.OnDownDirectionChanged += direction =>
-        {
-
-            var gravityForceAmount = _rigidBody.mass * _gravityMagnitude;
-            _rigidBody.bodyType = RigidbodyType2D.Dynamic;
-
-            _rigidBody.constraints =
-                direction is CameraController.Direction.Up or CameraController.Direction.Down ?
-                    RigidbodyConstraints2D.FreezePositionX : RigidbodyConstraints2D.FreezePositionY;
-
-            _constantForce2D.force = direction switch
-            {
-                CameraController.Direction.Up => new Vector2(0, gravityForceAmount),
-                CameraController.Direction.Down => new Vector2(0, -gravityForceAmount),
-                CameraController.Direction.Left => new Vector2(gravityForceAmount, 0),
-                CameraController.Direction.Right => new Vector2(-gravityForceAmount, 0),
-                _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
-            };
-        };
+    private void OnDestroy()
+    {
+        CameraController.OnRotation -= OnRotation;
+        CameraController.OnDownDirectionChanged -= OnDownDirectionChanged;
     }
 
     private void Update()
