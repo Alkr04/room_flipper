@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+
+    public static Action OnRotationStarted;
     public static Action<Quaternion> OnRotation;
     public static Action<Direction> OnDownDirectionChanged;
 
@@ -77,12 +79,14 @@ public class CameraController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
+                OnRotationStarted?.Invoke();
                 _isRotating = true;
                 _targetRotation = Quaternion.Euler(_camera.transform.eulerAngles + Vector3.forward * 90);
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
+                OnRotationStarted?.Invoke();
                 _isRotating = true;
                 _targetRotation = Quaternion.Euler(_camera.transform.eulerAngles - Vector3.forward * 90);
             }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private static readonly int RotationStarted = Animator.StringToHash("onRotationStarted");
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
     private static readonly int OnImpact = Animator.StringToHash("onImpact");
 
@@ -34,8 +35,14 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        CameraController.OnRotationStarted += OnRotationStarted;
         CameraController.OnRotation += OnRotation;
         CameraController.OnDownDirectionChanged += OnDownDirectionChanged;
+    }
+
+    private void OnRotationStarted()
+    {
+        _animator.SetTrigger(RotationStarted);
     }
 
     private void OnRotation(Quaternion rotation)
@@ -63,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDestroy()
     {
+        CameraController.OnRotationStarted -= OnRotationStarted;
         CameraController.OnRotation -= OnRotation;
         CameraController.OnDownDirectionChanged -= OnDownDirectionChanged;
     }
