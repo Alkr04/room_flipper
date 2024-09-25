@@ -77,12 +77,12 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Window"))
         {
-            PlayerDies?.Invoke();
+            GameController.Restart();
         }
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Exit"))
         {
-            PlayerExits?.Invoke();
+            GameController.NextLevel();
         }
     }
 
