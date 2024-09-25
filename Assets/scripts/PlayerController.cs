@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static event Action PlayerExits;
+
     public static PlayerController Instance;
 
     private Rigidbody2D _rigidBody;
     private ConstantForce2D _constantForce2D;
     private BoxCollider2D _collider2D;
     private float _gravityMagnitude;
-
-    private int _groundLayer;
 
     private void Awake()
     {
@@ -20,8 +20,6 @@ public class PlayerController : MonoBehaviour
         _constantForce2D = GetComponent<ConstantForce2D> ();
         _collider2D = GetComponent<BoxCollider2D>();
         _gravityMagnitude = Physics2D.gravity.magnitude;
-
-        _groundLayer = LayerMask.GetMask("Platform");
     }
 
     private void Start()
@@ -48,8 +46,17 @@ public class PlayerController : MonoBehaviour
         };
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Exit"))
+        {
+            Destroy(collision.collider.gameObject);
+            PlayerExits?.Invoke();
+        }
+    }
+
     public bool IsTouchingGround()
     {
-        return _collider2D.IsTouchingLayers(_groundLayer);
+        return _collider2D.IsTouchingLayers(LayerMask.GetMask("Platform"));
     }
 }
