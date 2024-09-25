@@ -1,8 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
+    public static event Action PlayerDies;
     public static event Action PlayerExits;
 
     public static PlayerController Instance;
@@ -46,11 +48,15 @@ public class PlayerController : MonoBehaviour
         };
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Exit"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Window"))
         {
-            Destroy(collision.collider.gameObject);
+            PlayerDies?.Invoke();
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Exit"))
+        {
             PlayerExits?.Invoke();
         }
     }
