@@ -22,11 +22,17 @@ public class gamemanager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         test++;
         PlayerController.PlayerDies += PlayerController_PlayerDies;
+        PlayerController.PlayerExits += PlayerController_PlayerExits;
+    }
+
+    private void PlayerController_PlayerExits()
+    {
+        nextlv();
     }
 
     private void PlayerController_PlayerDies()
     {
-        //Debug.Log("test");
+        
         canvas.GetComponent<UIController>().ShowMenuPanel();
     }
 
@@ -52,5 +58,6 @@ public class gamemanager : MonoBehaviour
     {
         scean = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(scean);
+        //Debug.Log("test");
     }
 }
