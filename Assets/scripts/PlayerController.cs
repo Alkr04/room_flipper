@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour
     {
         Instance = this;
 
-        _rigidBody = GetComponent<Rigidbody2D> ();
-        _constantForce2D = GetComponent<ConstantForce2D> ();
+        _rigidBody = GetComponent<Rigidbody2D>();
+        _constantForce2D = GetComponent<ConstantForce2D>();
         _collider2D = GetComponent<BoxCollider2D>();
         _gravityMagnitude = Physics2D.gravity.magnitude;
     }
@@ -37,6 +37,11 @@ public class PlayerController : MonoBehaviour
 
             var gravityForceAmount = _rigidBody.mass * _gravityMagnitude;
             _rigidBody.bodyType = RigidbodyType2D.Dynamic;
+
+            _rigidBody.constraints =
+                direction is CameraController.Direction.Up or CameraController.Direction.Down ?
+                    RigidbodyConstraints2D.FreezePositionX : RigidbodyConstraints2D.FreezePositionY;
+
             _constantForce2D.force = direction switch
             {
                 CameraController.Direction.Up => new Vector2(0, gravityForceAmount),

@@ -6,11 +6,14 @@ public class gamemanager : MonoBehaviour
 {
     int scean;
     public int test = 0;
+    GameObject canvas;
+    //GameObject player;
     //public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         GameObject[] manager = GameObject.FindGameObjectsWithTag("GameController");
+        canvas = GameObject.Find("Canvas");
         
         if (manager.Length > 1)
         {
@@ -18,7 +21,21 @@ public class gamemanager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
         test++;
+        PlayerController.PlayerDies += PlayerController_PlayerDies;
+        PlayerController.PlayerExits += PlayerController_PlayerExits;
     }
+
+    private void PlayerController_PlayerExits()
+    {
+        nextlv();
+    }
+
+    private void PlayerController_PlayerDies()
+    {
+        
+        canvas.GetComponent<UIController>().ShowMenuPanel();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -41,5 +58,6 @@ public class gamemanager : MonoBehaviour
     {
         scean = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(scean);
+        //Debug.Log("test");
     }
 }
