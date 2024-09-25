@@ -41,7 +41,7 @@ public class UIController : MonoBehaviour
         _menuPanel.SetActive(false);
     }
 
-    private void ShowPopup(string text)
+    public void ShowPopup(string text)
     {
         _isPopupOpen = true;
         _canvas.enabled = true;
@@ -50,7 +50,7 @@ public class UIController : MonoBehaviour
         _wizardText.text = text;
     }
 
-    private void ShowMenuPanel()
+    public void ShowMenuPanel()
     {
         _isMenuOpen = true;
         _canvas.enabled = true;

@@ -6,11 +6,14 @@ public class gamemanager : MonoBehaviour
 {
     int scean;
     public int test = 0;
+    GameObject canvas;
+    //GameObject player;
     //public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         GameObject[] manager = GameObject.FindGameObjectsWithTag("GameController");
+        canvas = GameObject.Find("Canvas");
         
         if (manager.Length > 1)
         {
@@ -18,7 +21,15 @@ public class gamemanager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
         test++;
+        PlayerController.PlayerDies += PlayerController_PlayerDies;
     }
+
+    private void PlayerController_PlayerDies()
+    {
+        //Debug.Log("test");
+        canvas.GetComponent<UIController>().ShowMenuPanel();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
