@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private float _gravityMagnitude;
 
+    private bool _isFalling;
+
     private void Awake()
     {
         Instance = this;
@@ -61,11 +63,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (IsTouchingGround() && _animator.GetBool(IsFalling))
+        if (IsTouchingGround() && _isFalling)
         {
             _animator.SetTrigger(OnImpact);
         }
-        _animator.SetBool(IsFalling, !IsTouchingGround());
+
+        _isFalling = !IsTouchingGround();
+
+        _animator.SetBool(IsFalling, _isFalling);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
