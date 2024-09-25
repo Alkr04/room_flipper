@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController Instance;
 
+    private UIController _uiController;
+
     private Rigidbody2D _rigidBody;
     private ConstantForce2D _constantForce2D;
     private BoxCollider2D _collider2D;
@@ -19,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        _uiController = GameObject.Find("Canvas").GetComponent<UIController>();
 
         _rigidBody = GetComponent<Rigidbody2D>();
         _constantForce2D = GetComponent<ConstantForce2D>();
@@ -79,7 +83,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Window"))
         {
-            SceneController.Restart();
+            _uiController.ShowMenuPanel();
         }
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Exit"))
