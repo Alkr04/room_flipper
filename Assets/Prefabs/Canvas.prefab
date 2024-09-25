@@ -302,11 +302,11 @@ RectTransform:
   - {fileID: 1716189809263714878}
   m_Father: {fileID: 5902638492329294417}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 177.00012, y: 4.2109375}
-  m_SizeDelta: {x: 1920, y: 154.24}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 166, y: 0}
+  m_SizeDelta: {x: 0, y: 154.24}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2932312508344662407
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -948,6 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2998cd0ef41878740b0b856ce4d51e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scenePopup: {fileID: 11400000, guid: 89a89e7bc3f05224f95ecf0787036c44, type: 2}
 --- !u!222 &6821474466386458176
 CanvasRenderer:
   m_ObjectHideFlags: 0

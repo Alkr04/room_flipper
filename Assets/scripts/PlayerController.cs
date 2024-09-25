@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Exit"))
         {
-            SceneController.NextLevel();
+            _uiController.DisplayEndPopups();
         }
     }
 

@@ -5,7 +5,7 @@ public class MainMenuController : MonoBehaviour
 {
     private void Start()
     {
-        GameObject.Find("startBtn").GetComponent<Button>().onClick.AddListener(SceneController.NextLevel);
+        GameObject.Find("startBtn").GetComponent<Button>().onClick.AddListener(SceneController.StartGame);
         GameObject.Find("exitBtn").GetComponent<Button>().onClick.AddListener(SceneController.Quit);
     }
 }
