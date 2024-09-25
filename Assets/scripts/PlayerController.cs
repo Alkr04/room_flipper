@@ -1,12 +1,17 @@
 using System;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
+    public static event Action PlayerDies;
+    public static event Action PlayerExits;
+
     public static PlayerController Instance;
 
     private Rigidbody2D _rigidBody;
     private ConstantForce2D _constantForce2D;
+    private BoxCollider2D _collider2D;
     private float _gravityMagnitude;
 
     private void Awake()
@@ -15,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
         _rigidBody = GetComponent<Rigidbody2D> ();
         _constantForce2D = GetComponent<ConstantForce2D> ();
+        _collider2D = GetComponent<BoxCollider2D>();
         _gravityMagnitude = Physics2D.gravity.magnitude;
     }
 
@@ -42,8 +48,21 @@ public class PlayerController : MonoBehaviour
         };
     }
 
-    public bool IsNotMoving()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        return Mathf.Abs(_rigidBody.velocity.magnitude) < .1;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Window"))
+        {
+            PlayerDies?.Invoke();
+        }
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Exit"))
+        {
+            PlayerExits?.Invoke();
+        }
+    }
+
+    public bool IsTouchingGround()
+    {
+        return _collider2D.IsTouchingLayers(LayerMask.GetMask("Platform"));
     }
 }

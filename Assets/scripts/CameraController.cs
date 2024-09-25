@@ -73,7 +73,7 @@ public class CameraController : MonoBehaviour
 
     private void HandleInput()
     {
-        if (_playerController.IsNotMoving() && !UIController.IsDisplaying())
+        if (_playerController.IsTouchingGround() && !UIController.IsDisplaying())
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
