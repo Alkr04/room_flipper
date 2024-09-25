@@ -27,14 +27,19 @@ public class gamemanager : MonoBehaviour
         }
     }
 
-    void quit()
+    public void quit()
     {
         Application.Quit();
     }
-    void restart()
+    public void restart()
     {
         //Destroy(player);
         scean = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(scean);
+    }
+    public void nextlv()
+    {
+        scean = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(scean);
     }
 }
