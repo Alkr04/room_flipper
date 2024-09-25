@@ -1,12 +1,8 @@
 using System;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
-    public static event Action PlayerDies;
-    public static event Action PlayerExits;
-
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
     private static readonly int OnImpact = Animator.StringToHash("onImpact");
 
@@ -77,12 +73,12 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Window"))
         {
-            PlayerDies?.Invoke();
+            SceneController.Restart();
         }
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Exit"))
         {
-            PlayerExits?.Invoke();
+            SceneController.NextLevel();
         }
     }
 

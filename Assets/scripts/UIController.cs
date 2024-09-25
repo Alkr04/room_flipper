@@ -33,8 +33,8 @@ public class UIController : MonoBehaviour
 
     private void Start()
     {
-        _restartBtn.onClick.AddListener(() => { });
-        _quitBtn.onClick.AddListener(() => { });
+        _restartBtn.onClick.AddListener(SceneController.Restart);
+        _quitBtn.onClick.AddListener(SceneController.Quit);
 
         _canvas.enabled = false;
         _popupPanel.SetActive(false);
