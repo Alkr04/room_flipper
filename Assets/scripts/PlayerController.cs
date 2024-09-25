@@ -7,11 +7,15 @@ public class PlayerController : MonoBehaviour
     public static event Action PlayerDies;
     public static event Action PlayerExits;
 
+    private static readonly int IsFalling = Animator.StringToHash("isFalling");
+    private static readonly int OnImpact = Animator.StringToHash("onImpact");
+
     public static PlayerController Instance;
 
     private Rigidbody2D _rigidBody;
     private ConstantForce2D _constantForce2D;
     private BoxCollider2D _collider2D;
+    private Animator _animator;
     private float _gravityMagnitude;
 
     private void Awake()
@@ -21,6 +25,8 @@ public class PlayerController : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody2D>();
         _constantForce2D = GetComponent<ConstantForce2D>();
         _collider2D = GetComponent<BoxCollider2D>();
+        _animator = GetComponent<Animator>();
+
         _gravityMagnitude = Physics2D.gravity.magnitude;
     }
 
@@ -51,6 +57,15 @@ public class PlayerController : MonoBehaviour
                 _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
             };
         };
+    }
+
+    private void Update()
+    {
+        if (IsTouchingGround() && _animator.GetBool(IsFalling))
+        {
+            _animator.SetTrigger(OnImpact);
+        }
+        _animator.SetBool(IsFalling, !IsTouchingGround());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
