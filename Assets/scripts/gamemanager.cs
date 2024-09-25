@@ -1,63 +1,52 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class gamemanager : MonoBehaviour
+
+public class GameManager : MonoBehaviour
 {
-    int scean;
-    public int test = 0;
-    GameObject canvas;
-    //GameObject player;
-    //public GameObject player;
-    // Start is called before the first frame update
-    void Start()
+    private int _scene;
+
+    private UIController _uiController;
+
+    private void Start()
     {
-        GameObject[] manager = GameObject.FindGameObjectsWithTag("GameController");
-        canvas = GameObject.Find("Canvas");
-        
-        if (manager.Length > 1)
-        {
-            Destroy(this.gameObject);
-        }
+        var controller = GameObject.FindGameObjectWithTag("GameController");
+        _uiController = GameObject.Find("Canvas").GetComponent<UIController>();
+
+        Destroy(controller);
+
         DontDestroyOnLoad(this.gameObject);
-        test++;
         PlayerController.PlayerDies += PlayerController_PlayerDies;
         PlayerController.PlayerExits += PlayerController_PlayerExits;
     }
 
     private void PlayerController_PlayerExits()
     {
-        nextlv();
+        NextLevel();
     }
 
     private void PlayerController_PlayerDies()
     {
-        
-        canvas.GetComponent<UIController>().ShowMenuPanel();
+
+        _uiController.GetComponent<UIController>().ShowMenuPanel();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            restart();
+            Restart();
         }
     }
 
-    public void quit()
+    private void Restart()
     {
-        Application.Quit();
+        var scene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(scene);
     }
-    public void restart()
+
+    private void NextLevel()
     {
-        //Destroy(player);
-        scean = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(scean);
-    }
-    public void nextlv()
-    {
-        scean = SceneManager.GetActiveScene().buildIndex + 1;
-        SceneManager.LoadScene(scean);
-        //Debug.Log("test");
+        var scene = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(scene);
     }
 }
