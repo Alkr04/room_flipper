@@ -11,6 +11,8 @@ namespace Controller
 
         public static PlayerController Instance;
 
+        [SerializeField] private float velocityToFallOver;
+
         private Rigidbody2D _rigidBody;
         private ConstantForce2D _constantForce2D;
         private BoxCollider2D _collider2D;
@@ -73,15 +75,20 @@ namespace Controller
             CameraController.OnDownDirectionChanged -= OnDownDirectionChanged;
         }
 
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Platform"))
+            {
+                if (other.relativeVelocity.sqrMagnitude > velocityToFallOver * velocityToFallOver)
+                {
+                    _animator.SetTrigger(OnImpact);
+                }
+            }
+        }
+
         private void Update()
         {
-            if (IsTouchingGround() && _isFalling)
-            {
-                _animator.SetTrigger(OnImpact);
-            }
-
             _isFalling = !IsTouchingGround();
-
             _animator.SetBool(IsFalling, _isFalling);
         }
 
