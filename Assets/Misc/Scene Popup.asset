@@ -29,3 +29,7 @@ MonoBehaviour:
     - why did I decide to put the TV at the top and my kitchen on the bottom?
     dialogueAtEnd:
     - I hope the add break is not over
+  - dialogueAtStart:
+    - finaly the kitchen
+    dialogueAtEnd:
+    - I finaly have my chips! now how to I get back upp?
