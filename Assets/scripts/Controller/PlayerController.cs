@@ -11,6 +11,7 @@ namespace Controller
 
         public static PlayerController Instance;
 
+        [SerializeField] private float velocityToFall;
         [SerializeField] private float velocityToFallOver;
 
         private Rigidbody2D _rigidBody;
@@ -20,7 +21,10 @@ namespace Controller
         private float _gravityMagnitude;
 
         private bool _isFalling;
+        private bool _isNewlyRotated;
 
+        public AudioClip oof;
+        AudioSource sorce;
         private void Awake()
         {
             Instance = this;
@@ -31,6 +35,8 @@ namespace Controller
             _animator = GetComponent<Animator>();
 
             _gravityMagnitude = Physics2D.gravity.magnitude;
+
+            sorce = GetComponent<AudioSource>();
         }
 
         private void Start()
@@ -66,6 +72,8 @@ namespace Controller
                 CameraController.Direction.Right => new Vector2(-gravityForceAmount, 0),
                 _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
             };
+
+            _isNewlyRotated = true;
         }
 
         private void OnDestroy()
@@ -81,6 +89,7 @@ namespace Controller
             {
                 if (other.relativeVelocity.sqrMagnitude > velocityToFallOver * velocityToFallOver)
                 {
+                    sorce.PlayOneShot(oof);
                     _animator.SetTrigger(OnImpact);
                 }
             }
@@ -88,8 +97,19 @@ namespace Controller
 
         private void Update()
         {
-            _isFalling = !IsTouchingGround();
-            _animator.SetBool(IsFalling, _isFalling);
+            if (IsTouchingGround())
+            {
+                _isFalling = false;
+                _animator.SetBool(IsFalling, _isFalling);
+            }
+            else if (!_isFalling && _rigidBody.velocity.sqrMagnitude > velocityToFall * velocityToFall)
+            {
+                if (!IsTouchingGround())
+                {
+                    _isFalling = true;
+                    _animator.SetBool(IsFalling, _isFalling);
+                }
+            }
         }
 
         public bool IsTouchingGround()
