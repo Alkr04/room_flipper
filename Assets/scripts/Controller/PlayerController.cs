@@ -111,9 +111,23 @@ namespace Controller
             }
         }
 
-        public bool IsTouchingGround()
+        private bool IsTouchingGround()
         {
             return _collider2D.IsTouchingLayers(LayerMask.GetMask("Platform"));
+        }
+
+        public bool IsReady()
+        {
+            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("player_stand"))
+            {
+                return false;
+            }
+            if (!IsTouchingGround())
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

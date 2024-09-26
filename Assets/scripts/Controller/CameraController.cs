@@ -77,7 +77,7 @@ namespace Controller
 
         private void HandleInput()
         {
-            if (_playerController.IsTouchingGround() && !UIController.IsDisplaying())
+            if (_playerController.IsReady() && !UIController.IsDisplaying())
             {
                 if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
