@@ -14,25 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - dialogueAtStart:
-    - HMM... I'M CRAVING CHIPS,
-    - BUT WHO HAS THE ENERGY TO *WALK* ALL THE WAY TO THE KITCHEN
-    - IF I CAN JUST MAKE IT TO THAT HOLE AT THE BOTTOM I'LL MAKE IT TO THE NEXT FLOOR
+    - Hmm... I'm craving chips
+    - But who has the energy to <i>walk</i> all the way to the kitchen
+    - If I can just make it to that hole at the bottom I'll make it to the next floor
     dialogueAtEnd:
-    - Congrats.
-    - You finished the first level.
+    - One step closer...
   - dialogueAtStart:
-    - Welcome to the second level.
-    dialogueAtEnd:
-    - You finished the second level.
-    - Good job!
+    - Why did I build such a tall tower...
+    dialogueAtEnd: []
   - dialogueAtStart:
-    - why did I decide to put the TV at the top and my kitchen on the bottom?
+    - Why did I decide to put the TV at the top and my kitchen on the ground floor?
     dialogueAtEnd:
-    - I hope the add break is not over
+    - I hope the ad break is not over...
   - dialogueAtStart:
-    - finaly the kitchen
+    - Finally I've reached the kitchen. I can see the bag of chips in the distance.
     dialogueAtEnd:
-    - I finaly have my chips! now how to I get back upp?
+    - I finally have my chips! How to get back up...
+    - Maybe I should take the elevator!
   dialogueAtMenu:
-  - Falling isn't so bad... It's the landing that hurts.
-  - Random stuff
+  - The trouble with having an open mind, of course, is that people will insist on
+    coming along and trying to put things in it.
+  - In ancient times cats were worshipped as gods; they have not forgotten this.
+  - Wisdom comes from experience. Experience is often a result of lack of wisdom.
+  - "Falling isn\u2019t so bad, you know. It\u2019s only the landing that hurts."
