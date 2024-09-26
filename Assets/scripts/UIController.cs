@@ -118,8 +118,8 @@ public class UIController : MonoBehaviour
         return _instance._isPopupOpen || _instance._isMenuOpen;
     }
 
-    public void DisplayEndPopups()
+    public static void DisplayEndPopups()
     {
-        _displayPopup = DisplayPopup.End;
+        _instance._displayPopup = DisplayPopup.End;
     }
 }

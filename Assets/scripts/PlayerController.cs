@@ -87,14 +87,6 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool(IsFalling, _isFalling);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Exit"))
-        {
-            _uiController.DisplayEndPopups();
-        }
-    }
-
     public bool IsTouchingGround()
     {
         return _collider2D.IsTouchingLayers(LayerMask.GetMask("Platform"));
