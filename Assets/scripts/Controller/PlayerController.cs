@@ -11,8 +11,6 @@ namespace Controller
 
         public static PlayerController Instance;
 
-        private UIController _uiController;
-
         private Rigidbody2D _rigidBody;
         private ConstantForce2D _constantForce2D;
         private BoxCollider2D _collider2D;
@@ -24,8 +22,6 @@ namespace Controller
         private void Awake()
         {
             Instance = this;
-
-            _uiController = GameObject.Find("Canvas").GetComponent<UIController>();
 
             _rigidBody = GetComponent<Rigidbody2D>();
             _constantForce2D = GetComponent<ConstantForce2D>();
@@ -87,11 +83,6 @@ namespace Controller
             _isFalling = !IsTouchingGround();
 
             _animator.SetBool(IsFalling, _isFalling);
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-
         }
 
         public bool IsTouchingGround()
