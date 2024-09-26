@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace Controller
         private Canvas _canvas;
         private GameObject _menuPanel;
         private GameObject _popupPanel;
+        private GameObject _animationPanel;
 
         private TextMeshProUGUI _wizardText;
 
@@ -37,13 +39,17 @@ namespace Controller
 
         private DisplayPopup _displayPopup = DisplayPopup.Start;
 
+
         private void Awake()
         {
             _instance = this;
 
             _canvas = GetComponent<Canvas>();
+
             _menuPanel = GameObject.Find("menuPanel");
             _popupPanel = GameObject.Find("popupPanel");
+            _animationPanel = GameObject.Find("animationPanel");
+
             _wizardText = GameObject.Find("wizardText").GetComponent<TextMeshProUGUI>();
 
             _continueBtn = GameObject.Find("continueBtn").GetComponent<Button>();
@@ -60,6 +66,7 @@ namespace Controller
             _canvas.enabled = false;
             _popupPanel.SetActive(false);
             _menuPanel.SetActive(false);
+            _animationPanel.SetActive(false);
 
             var sceneIndex = SceneManager.GetActiveScene().buildIndex;
             _dialogueAtMenu = scenePopup.dialogueAtMenu;
@@ -86,6 +93,38 @@ namespace Controller
         }
 
         public static void ShowMenuPanel(bool displayContinue)
+        {
+            if (displayContinue)
+            {
+                DisplayMenuPanel(true);
+            }
+            else
+            {
+                DisplayAnimation();
+                _instance.StartCoroutine(_instance.DisplayMenuWithDelay());
+            }
+        }
+
+        private IEnumerator DisplayMenuWithDelay()
+        {
+            yield return new WaitForSeconds(1f);
+            _animationPanel.SetActive(false);
+            DisplayMenuPanel(false);
+        }
+
+
+        private static void DisplayAnimation()
+        {
+            _instance._canvas.enabled = true;
+            _instance._animationPanel.SetActive(true);
+        }
+
+        private static void HideAnimation()
+        {
+            _instance._animationPanel.SetActive(false);
+        }
+
+        private static void DisplayMenuPanel(bool displayContinue)
         {
             _instance._continueBtn.gameObject.SetActive(displayContinue);
 
