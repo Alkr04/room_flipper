@@ -21,7 +21,6 @@ namespace Controller
         private float _gravityMagnitude;
 
         private bool _isFalling;
-        private bool _isNewlyRotated;
 
         public AudioClip oof;
         AudioSource sorce;
@@ -72,8 +71,6 @@ namespace Controller
                 CameraController.Direction.Right => new Vector2(-gravityForceAmount, 0),
                 _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
             };
-
-            _isNewlyRotated = true;
         }
 
         private void OnDestroy()

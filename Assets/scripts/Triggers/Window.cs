@@ -25,10 +25,10 @@ namespace Triggers
         {
             if (_animator.enabled)
             {
-                AnimatorStateInfo asi = _animator.GetCurrentAnimatorStateInfo(0);
-                if (asi.normalizedTime >= 1)
+                var animatorStateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+                if (animatorStateInfo.normalizedTime >= 1)
                 {
-                    UIController.ShowMenuPanel();
+                    UIController.ShowMenuPanel(false);
                 }
             }
         }

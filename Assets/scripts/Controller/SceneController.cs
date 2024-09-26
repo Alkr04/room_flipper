@@ -30,5 +30,10 @@ namespace Controller
             Application.Quit();
 #endif
         }
+
+        public static void GoToMainMenu()
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }

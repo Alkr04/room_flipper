@@ -27,8 +27,9 @@ namespace Controller
         private bool _isMenuOpen;
         private bool _isPopupOpen;
 
+        private Button _continueBtn;
         private Button _restartBtn;
-        private Button _quitBtn;
+        private Button _menuBtn;
 
         private List<string> _dialogueAtStart;
         private List<string> _dialogueAtEnd;
@@ -44,14 +45,16 @@ namespace Controller
             _popupPanel = GameObject.Find("popupPanel");
             _wizardText = GameObject.Find("wizardText").GetComponent<TextMeshProUGUI>();
 
+            _continueBtn = GameObject.Find("continueBtn").GetComponent<Button>();
             _restartBtn = GameObject.Find("restartBtn").GetComponent<Button>();
-            _quitBtn = GameObject.Find("quitBtn").GetComponent<Button>();
+            _menuBtn = GameObject.Find("menuBtn").GetComponent<Button>();
         }
 
         private void Start()
         {
+            _continueBtn.onClick.AddListener(HideMenuPanel);
             _restartBtn.onClick.AddListener(SceneController.Restart);
-            _quitBtn.onClick.AddListener(SceneController.Quit);
+            _menuBtn.onClick.AddListener(SceneController.GoToMainMenu);
 
             _canvas.enabled = false;
             _popupPanel.SetActive(false);
@@ -79,10 +82,19 @@ namespace Controller
             _wizardText.text = text;
         }
 
-        public static void ShowMenuPanel()
+        public static void ShowMenuPanel(bool displayContinue)
         {
+            _instance._continueBtn.enabled = displayContinue;
+
             _instance._isMenuOpen = true;
             _instance._canvas.enabled = true;
+            _instance._menuPanel.SetActive(_instance._isMenuOpen);
+        }
+
+        private static void HideMenuPanel()
+        {
+            _instance._isMenuOpen = false;
+            _instance._canvas.enabled = false;
             _instance._menuPanel.SetActive(_instance._isMenuOpen);
         }
 
@@ -106,6 +118,12 @@ namespace Controller
                     _isPopupOpen = false;
                     _canvas.enabled = false;
                     _popupPanel.SetActive(_isPopupOpen);
+                }
+            } else if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!_isPopupOpen && !_isMenuOpen)
+                {
+                    ShowMenuPanel(true);
                 }
             }
 
