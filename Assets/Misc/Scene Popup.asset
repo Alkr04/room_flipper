@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - dialogueAtStart:
-    - Hello there.
-    - We can have multiple lines of dialogue.
+    - HMM... I'M CRAVING CHIPS,
+    - BUT WHO HAS THE ENERGY TO *WALK* ALL THE WAY TO THE KITCHEN
+    - IF I CAN JUST MAKE IT TO THAT HOLE AT THE BOTTOM I'LL MAKE IT TO THE NEXT FLOOR
     dialogueAtEnd:
     - Congrats.
     - You finished the first level.
