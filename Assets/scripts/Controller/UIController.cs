@@ -84,7 +84,7 @@ namespace Controller
 
         public static void ShowMenuPanel(bool displayContinue)
         {
-            _instance._continueBtn.enabled = displayContinue;
+            _instance._continueBtn.gameObject.SetActive(displayContinue);
 
             _instance._isMenuOpen = true;
             _instance._canvas.enabled = true;

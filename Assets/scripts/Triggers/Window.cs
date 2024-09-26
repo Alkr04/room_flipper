@@ -29,6 +29,7 @@ namespace Triggers
                 if (animatorStateInfo.normalizedTime >= 1)
                 {
                     UIController.ShowMenuPanel(false);
+                    Destroy(gameObject);
                 }
             }
         }
