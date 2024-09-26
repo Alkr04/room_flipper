@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocityToFallOver: 10
+  oof: {fileID: 8300000, guid: 347634fc07317ba4ebf69306d8ca8959, type: 3}
 --- !u!247 &6875312944399041293
 ConstantForce2D:
   m_ObjectHideFlags: 0

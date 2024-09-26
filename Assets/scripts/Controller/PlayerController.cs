@@ -21,6 +21,8 @@ namespace Controller
 
         private bool _isFalling;
 
+        public AudioClip oof;
+        AudioSource sorce;
         private void Awake()
         {
             Instance = this;
@@ -31,6 +33,8 @@ namespace Controller
             _animator = GetComponent<Animator>();
 
             _gravityMagnitude = Physics2D.gravity.magnitude;
+
+            sorce = GetComponent<AudioSource>();
         }
 
         private void Start()
@@ -81,6 +85,7 @@ namespace Controller
             {
                 if (other.relativeVelocity.sqrMagnitude > velocityToFallOver * velocityToFallOver)
                 {
+                    sorce.PlayOneShot(oof);
                     _animator.SetTrigger(OnImpact);
                 }
             }
