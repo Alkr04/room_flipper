@@ -5376,6 +5376,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2803802990440909957, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2803802990440909957, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2803802990440909957, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2803802990440909957, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4824605740051397803, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5395,6 +5411,22 @@ PrefabInstance:
     - target: {fileID: 4824605740051397803, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409523292233585135, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409523292233585135, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.072
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409523292233585135, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.536
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409523292233585135, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 166
       objectReference: {fileID: 0}
     - target: {fileID: 5902638492329294417, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
       propertyPath: m_Pivot.x
