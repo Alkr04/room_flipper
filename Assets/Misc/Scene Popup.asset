@@ -33,3 +33,6 @@ MonoBehaviour:
     - finaly the kitchen
     dialogueAtEnd:
     - I finaly have my chips! now how to I get back upp?
+  dialogueAtMenu:
+  - Falling isn't so bad... It's the landing that hurts.
+  - Random stuff

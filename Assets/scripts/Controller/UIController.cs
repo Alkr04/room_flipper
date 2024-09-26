@@ -33,6 +33,7 @@ namespace Controller
 
         private List<string> _dialogueAtStart;
         private List<string> _dialogueAtEnd;
+        private List<string> _dialogueAtMenu;
 
         private DisplayPopup _displayPopup = DisplayPopup.Start;
 
@@ -61,6 +62,8 @@ namespace Controller
             _menuPanel.SetActive(false);
 
             var sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            _dialogueAtMenu = scenePopup.dialogueAtMenu;
+
             if (sceneIndex <= scenePopup.dialogues.Length)
             {
                 _dialogueAtStart = new List<string>(scenePopup.dialogues[sceneIndex - 1].dialogueAtStart);
@@ -89,6 +92,9 @@ namespace Controller
             _instance._isMenuOpen = true;
             _instance._canvas.enabled = true;
             _instance._menuPanel.SetActive(_instance._isMenuOpen);
+
+            var popup = _instance._dialogueAtMenu[Random.Range(0, _instance._dialogueAtMenu.Count)];
+            _instance.ShowPopup(popup);
         }
 
         private static void HideMenuPanel()
@@ -96,6 +102,8 @@ namespace Controller
             _instance._isMenuOpen = false;
             _instance._canvas.enabled = false;
             _instance._menuPanel.SetActive(_instance._isMenuOpen);
+
+            HidePopupPanel();
         }
 
         private void Update()
@@ -106,7 +114,7 @@ namespace Controller
             {
                 ShowPopup(dialogueList[0]);
                 dialogueList.RemoveAt(0);
-            } else if (_isPopupOpen && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)))
+            } else if (_isPopupOpen && !_isMenuOpen && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)))
             {
                 if (dialogueList.Count > 0)
                 {
@@ -115,9 +123,7 @@ namespace Controller
                 }
                 else
                 {
-                    _isPopupOpen = false;
-                    _canvas.enabled = false;
-                    _popupPanel.SetActive(_isPopupOpen);
+                    HidePopupPanel();
                 }
             } else if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -131,6 +137,13 @@ namespace Controller
             {
                 SceneController.NextLevel();
             }
+        }
+
+        private static void HidePopupPanel()
+        {
+            _instance._isPopupOpen = false;
+            _instance._canvas.enabled = false;
+            _instance._popupPanel.SetActive(_instance._isPopupOpen);
         }
 
         public static bool IsDisplaying()
