@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -107,7 +108,7 @@ namespace Controller
 
         private IEnumerator DisplayMenuWithDelay()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
             _animationPanel.SetActive(false);
             DisplayMenuPanel(false);
         }
