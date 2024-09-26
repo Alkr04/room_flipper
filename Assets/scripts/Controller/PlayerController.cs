@@ -21,12 +21,13 @@ namespace Controller
         private float _gravityMagnitude;
 
         private bool _isFalling;
-        private bool _isNewlyRotated;
 
         public AudioClip oof;
         AudioSource sorce;
         private void Awake()
         {
+            Application.targetFrameRate = 60;
+
             Instance = this;
 
             _rigidBody = GetComponent<Rigidbody2D>();
@@ -72,8 +73,6 @@ namespace Controller
                 CameraController.Direction.Right => new Vector2(-gravityForceAmount, 0),
                 _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
             };
-
-            _isNewlyRotated = true;
         }
 
         private void OnDestroy()
