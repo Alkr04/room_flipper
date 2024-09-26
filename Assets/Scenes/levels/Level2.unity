@@ -130,6 +130,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1460450927173274957, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460450927173274957, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460450927173274957, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460450927173274957, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460450927173274957, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824605740051397803, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824605740051397803, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824605740051397803, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824605740051397803, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824605740051397803, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5902638492329294417, guid: c8418dcc3e6f3c249a76bafab671aee1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2812,10 +2852,6 @@ PrefabInstance:
     - target: {fileID: 2292760269638099874, guid: f2928e3d6bbcd024fa18c1655b2e237f, type: 3}
       propertyPath: m_Name
       value: Window
-      objectReference: {fileID: 0}
-    - target: {fileID: 5240098697195188479, guid: f2928e3d6bbcd024fa18c1655b2e237f, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

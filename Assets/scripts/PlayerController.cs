@@ -89,11 +89,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Window"))
-        {
-            _uiController.ShowMenuPanel();
-        }
-
         if (collision.gameObject.layer == LayerMask.NameToLayer("Exit"))
         {
             _uiController.DisplayEndPopups();

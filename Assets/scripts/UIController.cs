@@ -77,11 +77,11 @@ public class UIController : MonoBehaviour
         _wizardText.text = text;
     }
 
-    public void ShowMenuPanel()
+    public static void ShowMenuPanel()
     {
-        _isMenuOpen = true;
-        _canvas.enabled = true;
-        _menuPanel.SetActive(_isMenuOpen);
+        _instance._isMenuOpen = true;
+        _instance._canvas.enabled = true;
+        _instance._menuPanel.SetActive(_instance._isMenuOpen);
     }
 
     private void Update()
