@@ -131,7 +131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityToFall: 1
   velocityToFallOver: 8
-  oof: {fileID: 8300000, guid: 3b0a11ffa39056443abf31974a3d92b4, type: 3}
 --- !u!247 &6875312944399041293
 ConstantForce2D:
   m_ObjectHideFlags: 0
@@ -219,7 +218,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 09d0c45cabddaff42ac3f339d46eac30, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3b0a11ffa39056443abf31974a3d92b4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

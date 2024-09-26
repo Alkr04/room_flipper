@@ -6,18 +6,17 @@ namespace Triggers
     public class Window : MonoBehaviour
     {
         private Animator _animator;
-        public AudioClip screem;
-        AudioSource sorce;
+        private AudioSource _audioSource;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            sorce = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            sorce.PlayOneShot(screem);
+            _audioSource.Play();
             _animator.enabled = true;
         }
 
