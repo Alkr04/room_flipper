@@ -24,3 +24,7 @@ MonoBehaviour:
     dialogueAtEnd:
     - You finished the second level.
     - Good job!
+  - dialogueAtStart:
+    - why did I decide to put the TV at the top and my kitchen on the bottom?
+    dialogueAtEnd:
+    - I hope the add break is not over
