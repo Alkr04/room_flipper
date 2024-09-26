@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5a638fad2887342ac80a2a9ea0f474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocityToFall: 1
   velocityToFallOver: 10
   oof: {fileID: 8300000, guid: 347634fc07317ba4ebf69306d8ca8959, type: 3}
 --- !u!247 &6875312944399041293
