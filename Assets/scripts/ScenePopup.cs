@@ -10,12 +10,15 @@ public class ScenePopup : ScriptableObject
     [Serializable]
     public class LevelDialogue
     {
-        [FormerlySerializedAs("dialogueOnStart")] [TextArea]
+        [TextArea]
         public List<string> dialogueAtStart;
-        [FormerlySerializedAs("dialogueOnEnd")] [TextArea]
+        [TextArea]
         public List<string> dialogueAtEnd;
     }
 
     public LevelDialogue[] dialogues;
+
+    [TextArea]
+    public List<string> dialogueAtMenu;
 
 }
