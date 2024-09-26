@@ -21,8 +21,9 @@ namespace Controller
         private float _gravityMagnitude;
 
         private bool _isFalling;
-        private bool _isNewlyRotated;
 
+        public AudioClip oof;
+        AudioSource sorce;
         private void Awake()
         {
             Instance = this;
@@ -33,6 +34,8 @@ namespace Controller
             _animator = GetComponent<Animator>();
 
             _gravityMagnitude = Physics2D.gravity.magnitude;
+
+            sorce = GetComponent<AudioSource>();
         }
 
         private void Start()
@@ -68,8 +71,6 @@ namespace Controller
                 CameraController.Direction.Right => new Vector2(-gravityForceAmount, 0),
                 _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
             };
-
-            _isNewlyRotated = true;
         }
 
         private void OnDestroy()
@@ -85,6 +86,7 @@ namespace Controller
             {
                 if (other.relativeVelocity.sqrMagnitude > velocityToFallOver * velocityToFallOver)
                 {
+                    sorce.PlayOneShot(oof);
                     _animator.SetTrigger(OnImpact);
                 }
             }
