@@ -6,6 +6,11 @@ namespace Controller
 {
     public static class SceneController
     {
+        static SceneController()
+        {
+            Application.targetFrameRate = 60;
+        }
+
         public static void Restart()
         {
             var scene = SceneManager.GetActiveScene().buildIndex;

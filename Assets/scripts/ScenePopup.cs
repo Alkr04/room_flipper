@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Dialogue", menuName = "SO/Dialogue", order = 1)]
 public class ScenePopup : ScriptableObject

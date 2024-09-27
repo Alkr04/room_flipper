@@ -119,11 +119,6 @@ namespace Controller
             _instance._animationPanel.SetActive(true);
         }
 
-        private static void HideAnimation()
-        {
-            _instance._animationPanel.SetActive(false);
-        }
-
         private static void DisplayMenuPanel(bool displayContinue)
         {
             _instance._continueBtn.gameObject.SetActive(displayContinue);
